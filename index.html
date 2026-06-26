@@ -237,6 +237,14 @@
     color: var(--text); margin-bottom: 8px;
   }
   .wallet-desc { font-size: 13px; color: var(--text-2); margin-bottom: 14px; line-height: 1.55; }
+  .live-bal {
+    display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+    padding: 12px 14px; margin-bottom: 12px; border-radius: 10px;
+    background: rgba(123, 211, 137, 0.06); border: 1px solid rgba(123, 211, 137, 0.22);
+  }
+  .live-bal-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--grow); box-shadow: 0 0 8px var(--grow); animation: pulse 1.8s ease-in-out infinite; flex-shrink: 0; }
+  .live-bal-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-3); }
+  .live-bal-val { margin-left: auto; font-family: 'Sora', sans-serif; font-weight: 700; font-size: 18px; color: var(--text); }
   .inline-link { color: var(--ember-2); text-decoration: none; border-bottom: 1px solid rgba(242,106,40,0.4); transition: color 0.2s; }
   .inline-link:hover { color: var(--gold); }
   .wallet-addr {
@@ -438,6 +446,11 @@
       <div class="wallet-card">
         <div class="wallet-label">Dev wallet</div>
         <div class="wallet-desc">Where I buy, hold my small stack, and send community thank-yous from. Watch it — I don't accumulate, and I never dump.</div>
+        <div class="live-bal">
+          <span class="live-bal-dot"></span>
+          <span class="live-bal-label">Live $290LBS balance</span>
+          <span class="live-bal-val" id="devBal">loading…</span>
+        </div>
         <div class="wallet-addr">3TMrxNKH5Eavc6599Z1DDG4FMqdby5wLVN8ULcWRJDo1</div>
         <a class="solscan-link" href="https://solscan.io/account/3TMrxNKH5Eavc6599Z1DDG4FMqdby5wLVN8ULcWRJDo1" target="_blank" rel="noopener">View on Solscan ↗</a>
       </div>
@@ -495,6 +508,55 @@
       setTimeout(function(){ b.textContent = 'Copy'; }, 1600);
     });
   });
+
+  // ---- Live $290LBS balance of the dev wallet, read straight from the Solana chain ----
+  var MINT_290LBS = 'AvzGHK4ZcfX7UbRz3b1vKFoZNTFo9dC1cXUEhByxpump';
+  var DEV_WALLET  = '3TMrxNKH5Eavc6599Z1DDG4FMqdby5wLVN8ULcWRJDo1';
+  // Public, key-less Solana RPC endpoints — tried in order until one answers.
+  var RPC_ENDPOINTS = [
+    'https://solana-rpc.publicnode.com',
+    'https://api.mainnet-beta.solana.com',
+    'https://rpc.ankr.com/solana'
+  ];
+
+  function rpcCall(url) {
+    return fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        jsonrpc: '2.0', id: 1,
+        method: 'getTokenAccountsByOwner',
+        params: [
+          DEV_WALLET,
+          { mint: MINT_290LBS },
+          { encoding: 'jsonParsed' }
+        ]
+      })
+    }).then(function(r){ return r.json(); });
+  }
+
+  function fetchDevBalance(i) {
+    i = i || 0;
+    var balEl = document.getElementById('devBal');
+    if (i >= RPC_ENDPOINTS.length) {
+      balEl.textContent = 'unavailable';
+      return;
+    }
+    rpcCall(RPC_ENDPOINTS[i]).then(function(data) {
+      var accounts = data && data.result && data.result.value;
+      if (!accounts) throw new Error('no result');
+      var total = 0;
+      for (var k = 0; k < accounts.length; k++) {
+        var amt = accounts[k].account.data.parsed.info.tokenAmount;
+        total += parseFloat(amt.uiAmountString || amt.uiAmount || 0);
+      }
+      balEl.textContent = fmt.format(Math.round(total)) + ' $290LBS';
+    }).catch(function() {
+      fetchDevBalance(i + 1); // try the next endpoint
+    });
+  }
+  fetchDevBalance();
+  setInterval(function(){ fetchDevBalance(); }, 60000); // refresh every 60s
 </script>
 
 </body>
