@@ -221,6 +221,29 @@
   .copy-btn { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #0E1116; background: linear-gradient(135deg, var(--gold), var(--ember)); border: none; padding: 11px 20px; cursor: pointer; border-radius: 8px; letter-spacing: 0.04em; white-space: nowrap; font-weight: 600; transition: transform 0.2s; }
   .copy-btn:hover { transform: translateY(-1px); }
   .link-row { display: flex; gap: 14px; margin-top: 24px; flex-wrap: wrap; }
+  .solscan-link {
+    display: inline-block; margin-top: 14px; position: relative;
+    font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.04em;
+    color: var(--ember-2); text-decoration: none; transition: color 0.2s;
+  }
+  .solscan-link:hover { color: var(--gold); }
+  .wallet-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px; }
+  .wallet-card {
+    background: linear-gradient(180deg, var(--bg-3), var(--bg-2));
+    border: 1px solid var(--line-soft); border-radius: 14px; padding: 22px;
+  }
+  .wallet-label {
+    font-family: 'Sora', sans-serif; font-weight: 600; font-size: 16px;
+    color: var(--text); margin-bottom: 8px;
+  }
+  .wallet-desc { font-size: 13px; color: var(--text-2); margin-bottom: 14px; line-height: 1.55; }
+  .inline-link { color: var(--ember-2); text-decoration: none; border-bottom: 1px solid rgba(242,106,40,0.4); transition: color 0.2s; }
+  .inline-link:hover { color: var(--gold); }
+  .wallet-addr {
+    font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--text-3);
+    word-break: break-all; padding: 10px 12px; background: var(--bg);
+    border: 1px solid var(--line-soft); border-radius: 8px;
+  }
   .link-row a { font-size: 14px; color: var(--text); text-decoration: none; border: 1px solid var(--line); padding: 13px 22px; border-radius: 10px; transition: border-color 0.2s, background 0.2s; }
   .link-row a:hover { border-color: var(--ember); background: var(--bg-3); }
 
@@ -235,6 +258,7 @@
   @media (max-width: 680px) {
     .stat-row { grid-template-columns: 1fr 1fr; }
     .mech-grid { grid-template-columns: 1fr; }
+    .wallet-grid { grid-template-columns: 1fr; }
     .topnav a:not(.cta) { display: none; }
     .logtable .hide-sm { display: none; }
     section { padding: 56px 0; }
@@ -251,6 +275,7 @@
       <a href="#how">How it works</a>
       <a href="#log">Burn log</a>
       <a href="#manifesto">Manifesto</a>
+      <a href="https://discord.gg/vmWxcKP8nM" target="_blank" rel="noopener">Discord</a>
       <a href="https://pump.fun/coin/AvzGHK4ZcfX7UbRz3b1vKFoZNTFo9dC1cXUEhByxpump" class="cta" target="_blank" rel="noopener">Buy</a>
     </nav>
   </div>
@@ -394,18 +419,37 @@
 
 <section id="buy" class="band-2">
   <div class="wrap">
-    <p class="sec-tag">Watch the chain</p>
-    <h2 class="sec-title">Get <span class="grad">$290LBS</span></h2>
+    <p class="sec-tag">Watch the chain · don't trust, verify</p>
+    <h2 class="sec-title">Full <span class="grad">transparency</span></h2>
+
     <div class="ca-box">
-      <div class="ca-lbl">Contract address — Solana</div>
+      <div class="ca-lbl">Token contract (mint) — Solana</div>
       <div class="ca-flex">
         <span class="ca-val" id="ca">AvzGHK4ZcfX7UbRz3b1vKFoZNTFo9dC1cXUEhByxpump</span>
         <button class="copy-btn" id="copyBtn">Copy</button>
       </div>
+      <a class="solscan-link" href="https://solscan.io/token/AvzGHK4ZcfX7UbRz3b1vKFoZNTFo9dC1cXUEhByxpump" target="_blank" rel="noopener">View token on Solscan ↗</a>
     </div>
+
+    <div class="wallet-grid">
+      <div class="wallet-card">
+        <div class="wallet-label">Dev wallet</div>
+        <div class="wallet-desc">Where I buy, hold my small stack, and send community thank-yous from. Watch it — I don't accumulate, and I never dump.</div>
+        <div class="wallet-addr">3TMrxNKH5Eavc6599Z1DDG4FMqdby5wLVN8ULcWRJDo1</div>
+        <a class="solscan-link" href="https://solscan.io/account/3TMrxNKH5Eavc6599Z1DDG4FMqdby5wLVN8ULcWRJDo1" target="_blank" rel="noopener">View on Solscan ↗</a>
+      </div>
+      <div class="wallet-card">
+        <div class="wallet-label">Burn wallet</div>
+        <div class="wallet-desc">Every Sweat Burn and Scale Burn runs through this wallet and is executed with <a href="https://sol-incinerator.com/" target="_blank" rel="noopener" class="inline-link">Sol Incinerator</a> — a true native burn that permanently destroys the tokens and shrinks total supply. Not a dead "black-hole" address where coins merely sit unreachable. Gone means gone.</div>
+        <div class="wallet-addr">GK91zv7VfX84QYa6MHkdc4h7FxjAUV4UjU8GygfzdrHN</div>
+        <a class="solscan-link" href="https://solscan.io/account/GK91zv7VfX84QYa6MHkdc4h7FxjAUV4UjU8GygfzdrHN" target="_blank" rel="noopener">View on Solscan ↗</a>
+      </div>
+    </div>
+
     <div class="link-row">
       <a href="https://pump.fun/coin/AvzGHK4ZcfX7UbRz3b1vKFoZNTFo9dC1cXUEhByxpump" target="_blank" rel="noopener">Buy on pump.fun →</a>
       <a href="https://x.com/290lbs_coin" target="_blank" rel="noopener">Follow @290lbs_coin →</a>
+      <a href="https://discord.gg/vmWxcKP8nM" target="_blank" rel="noopener">Join the Discord →</a>
     </div>
   </div>
 </section>
