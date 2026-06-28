@@ -328,7 +328,7 @@
       <div class="stat"><div class="num">128.0<span style="font-size:16px;font-weight:500;"> kg</span></div><div class="lbl">Current weight · 282 lbs</div></div>
       <div class="stat"><div class="num grow">−7.9</div><div class="lbl">Pounds lost so far</div></div>
       <div class="stat"><div class="num ember">8.49M</div><div class="lbl">Tokens burned forever</div></div>
-      <div class="stat"><div class="num">0%</div><div class="lbl">Dev allocation</div></div>
+      <div class="stat"><div class="num" id="devPct">—</div><div class="lbl">Dev wallet now</div></div>
     </div>
   </div>
   <div class="hero-horizon"></div>
@@ -427,7 +427,7 @@
       <p>How did I get here? Years of zero exercise. No consistency. Junk food and heavy pastries. And every evening, washing down a mountain of workplace stress with beer or wine. I let my guard down, and it piled up — one careless day at a time, over decades in an office chair.</p>
       <p>That life ends now. I made a solemn promise to my wife that I will change. <span class="hl">I want to be there, in good health, for my three daughters for a long time — and I want to live to see my grandchildren grow up.</span></p>
       <p>So why a coin? I love crypto. I built $290LBS first and foremost for myself — as a metric I can't argue with, a way to carve my transformation into the blockchain forever, where it can't be edited, hidden, or quietly forgotten. I want to fix my life, and set a real example for my daughters. The time has come.</p>
-      <p>I hold <strong>zero percent</strong> of the supply. No hidden wallets. No team tokens. No pre-allocated treasury. I have no interest in dumping on anyone. Every single burn is funded directly from my own pocket, with my own SOL. Pure discipline. No estimates. <strong>Just math and sweat.</strong></p>
+      <p>I started with <strong>zero percent</strong> of the supply — no pre-mine, no team tokens, no pre-allocated treasury, no hidden wallets. The only $290LBS I hold sits in one public dev wallet: a working stack I buy from the open market, the same market as everyone else, to power the buybacks, the burns, and the community thank-yous. I never sell from it and I never dump — and you don't have to take my word for it, because its exact balance is shown live on this page. Every burn comes straight out of my own pocket, with my own SOL. Pure discipline. No estimates. <strong>Just math and sweat.</strong></p>
 
       <div class="mfx-divider"></div>
 
@@ -495,7 +495,7 @@
     <div class="wallet-grid">
       <div class="wallet-card">
         <div class="wallet-label">Dev wallet</div>
-        <div class="wallet-desc">Where I buy, hold my small stack, and send community thank-yous from. Watch it — I don't accumulate, and I never dump.</div>
+        <div class="wallet-desc">The only $290LBS I hold — a working stack I buy from the open market to power the burns and community thank-yous. Never pre-mined, never sold, never dumped. Watch its exact balance live below.</div>
         <div class="live-bal">
           <span class="live-bal-dot"></span>
           <span class="live-bal-label">Live $290LBS balance</span>
@@ -576,6 +576,7 @@
   function rpcCall(url) {
     return fetch(url, {
       method: 'POST',
+      cache: 'no-store',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         jsonrpc: '2.0', id: 1,
@@ -583,17 +584,28 @@
         params: [
           DEV_WALLET,
           { mint: MINT_290LBS },
-          { encoding: 'jsonParsed' }
+          { encoding: 'jsonParsed', commitment: 'confirmed' }
         ]
       })
-    }).then(function(r){ return r.json(); });
+    }).then(function(r){
+      if (!r.ok) throw new Error('http ' + r.status);
+      return r.json();
+    });
+  }
+
+  function fmtAllocPct(total) {
+    var pct = total / TOTAL_SUPPLY * 100;
+    if (pct <= 0) return '0%';
+    if (pct < 0.01) return '<0.01%';
+    return pct.toFixed(2) + '%';
   }
 
   function fetchDevBalance(i) {
     i = i || 0;
     var balEl = document.getElementById('devBal');
+    var pctEl = document.getElementById('devPct');
     if (i >= RPC_ENDPOINTS.length) {
-      balEl.textContent = 'unavailable';
+      if (balEl && balEl.textContent === 'loading…') balEl.textContent = 'unavailable';
       return;
     }
     rpcCall(RPC_ENDPOINTS[i]).then(function(data) {
@@ -604,7 +616,8 @@
         var amt = accounts[k].account.data.parsed.info.tokenAmount;
         total += parseFloat(amt.uiAmountString || amt.uiAmount || 0);
       }
-      balEl.textContent = fmt.format(Math.round(total)) + ' $290LBS';
+      if (balEl) balEl.textContent = fmt.format(Math.round(total)) + ' $290LBS';
+      if (pctEl) pctEl.textContent = fmtAllocPct(total);
     }).catch(function() {
       fetchDevBalance(i + 1); // try the next endpoint
     });
