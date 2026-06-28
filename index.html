@@ -134,6 +134,10 @@
     font-variant-numeric: tabular-nums;
   }
   .ls-sub { font-size: 12px; color: var(--text-3); margin-top: 12px; position: relative; }
+  .badges { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 24px; }
+  .badge { display: inline-flex; align-items: center; gap: 7px; font-family: 'JetBrains Mono', monospace; font-size: 11.5px; letter-spacing: 0.01em; color: var(--text-2); background: linear-gradient(180deg, var(--bg-3), var(--bg-2)); border: 1px solid var(--line-soft); border-radius: 100px; padding: 8px 14px; transition: border-color 0.25s; }
+  .badge:hover { border-color: rgba(226, 82, 26, 0.4); }
+  .badge b { font-style: normal; font-weight: 400; font-size: 13px; line-height: 1; }
   .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 56px; }
   .btn-primary {
     font-size: 15px; font-weight: 600; color: #0E1116; text-decoration: none;
@@ -282,6 +286,7 @@
     <nav class="topnav">
       <a href="#how">How it works</a>
       <a href="#log">Burn log</a>
+      <a href="#run">Community Run</a>
       <a href="#manifesto">Manifesto</a>
       <a href="https://discord.gg/vmWxcKP8nM" target="_blank" rel="noopener">Discord</a>
       <a href="https://pump.fun/coin/AvzGHK4ZcfX7UbRz3b1vKFoZNTFo9dC1cXUEhByxpump" class="cta" target="_blank" rel="noopener">Buy</a>
@@ -306,8 +311,14 @@
         <span class="ls-dot"></span>
         <span class="ls-label">Remaining supply — burning live</span>
       </div>
-      <div class="ls-num" id="liveSupply">991,654,283</div>
-      <div class="ls-sub">Counting down at the recent weekly burn pace · started from 1,000,000,000</div>
+      <div class="ls-num" id="liveSupply">991,510,868</div>
+      <div class="ls-sub">Falling live · 1,000,000,000 max, mint authority revoked — it only goes down</div>
+    </div>
+    <div class="badges">
+      <span class="badge"><b>🔥</b> Deflationary by design</span>
+      <span class="badge"><b>🚫</b> Mint authority revoked — no new tokens, ever</span>
+      <span class="badge"><b>📉</b> Supply only falls — twice every week</span>
+      <span class="badge"><b>🔗</b> Every burn on-chain &amp; verifiable</span>
     </div>
     <div class="hero-actions">
       <a class="btn-primary" href="https://pump.fun/coin/AvzGHK4ZcfX7UbRz3b1vKFoZNTFo9dC1cXUEhByxpump" target="_blank" rel="noopener">Buy on pump.fun</a>
@@ -316,7 +327,7 @@
     <div class="stat-row">
       <div class="stat"><div class="num">128.0<span style="font-size:16px;font-weight:500;"> kg</span></div><div class="lbl">Current weight · 282 lbs</div></div>
       <div class="stat"><div class="num grow">−7.9</div><div class="lbl">Pounds lost so far</div></div>
-      <div class="stat"><div class="num ember">8.34M</div><div class="lbl">Tokens burned forever</div></div>
+      <div class="stat"><div class="num ember">8.49M</div><div class="lbl">Tokens burned forever</div></div>
       <div class="stat"><div class="num">0%</div><div class="lbl">Dev allocation</div></div>
     </div>
   </div>
@@ -333,8 +344,8 @@
       <div class="ends"><span>290 lbs / 131.6 kg — start</span><span>210 lbs / 95.3 kg — goal</span></div>
     </div>
     <div class="prog">
-      <div class="prog-head"><span class="prog-name">Supply burned from market buybacks</span><span class="prog-pct ember">0.83%</span></div>
-      <div class="track"><div class="fill ember" style="width:8.34%;"></div></div>
+      <div class="prog-head"><span class="prog-name">Supply burned from market buybacks</span><span class="prog-pct ember">0.85%</span></div>
+      <div class="track"><div class="fill ember" style="width:8.49%;"></div></div>
       <div class="ends"><span>0 burned</span><span>1,000,000,000 total supply</span></div>
     </div>
   </div>
@@ -392,6 +403,7 @@
           <tr><td class="wk">W3 · May 31–Jun 6</td><td class="wt">129.8 kg <span style="color:var(--text-3);font-weight:400;">/ 286.2 lbs</span></td><td class="hide-sm">77,369</td><td class="hide-sm">660,000 <span style="color:var(--text-3);font-size:11px;">(0.66 lbs)</span></td><td class="r tot">737,369</td></tr>
           <tr><td class="wk">W4 · Jun 7–13</td><td class="wt">— <span class="pill">knee rest</span></td><td class="hide-sm">75,137</td><td class="hide-sm">0</td><td class="r tot">75,137</td></tr>
           <tr><td class="wk">W5 · Jun 14–20</td><td class="wt">128.0 kg <span style="color:var(--text-3);font-weight:400;">/ 282.2 lbs</span></td><td class="hide-sm">81,292</td><td class="hide-sm">3,970,000 <span style="color:var(--text-3);font-size:11px;">(3.97 lbs)</span></td><td class="r tot">4,051,292</td></tr>
+          <tr><td class="wk">W6 · Jun 21–27</td><td class="wt">— <span class="pill">weigh-in Mon</span></td><td class="hide-sm">143,415 <span class="pill">kcal ×10</span></td><td class="hide-sm">— <span style="color:var(--text-3);font-size:11px;">pending Mon</span></td><td class="r tot">143,415</td></tr>
         </tbody>
       </table>
     </div>
@@ -400,7 +412,7 @@
     </p>
     <div class="log-foot">
       <div class="fc"><div class="l">Total weight lost</div><div class="v grow">3.6 kg · 7.94 lbs</div></div>
-      <div class="fc"><div class="l">Cumulative burned forever</div><div class="v ember">8,345,717</div></div>
+      <div class="fc"><div class="l">Cumulative burned forever</div><div class="v ember">8,489,132</div></div>
     </div>
   </div>
 </section>
@@ -428,6 +440,43 @@
   </div>
 </section>
 
+<section id="run" class="band-2">
+  <div class="wrap">
+    <p class="sec-tag">This isn't only about me</p>
+    <h2 class="sec-title">Proof of Effort — <span class="grad">Community Run</span></h2>
+    <p style="font-size:17px;color:var(--text-2);max-width:680px;margin-bottom:36px;line-height:1.7;">
+      You sweat too? Show it. This is an open, always-on call — share your own effort, and from time to time I may send a token of thanks from my own wallet. Not a payout, not a prize draw. Just recognition for the people walking this road with me.
+    </p>
+    <div class="mech-grid">
+      <div class="mech">
+        <div class="mech-icon">🔗</div>
+        <div class="mech-n">how to join</div>
+        <h3>Drop a public link</h3>
+        <p>Share a <strong>public link</strong> to a real workout, run or hike — Strava, Komoot, or a public social post — as a comment under any of my X posts, or in the <strong>#proof-of-effort</strong> channel on Discord. A link, not a screenshot. The chain doesn't lie, and neither does your effort.</p>
+        <div class="formula">public link · not a screenshot</div>
+      </div>
+      <div class="mech">
+        <div class="mech-icon">✅</div>
+        <div class="mech-n">the rules</div>
+        <h3>Keep it real</h3>
+        <p>Real activity, set to <strong>public</strong> — not followers-only. Posted from a recognizable, personal profile. And posting more does not earn more: ten links in a day won't beat one honest week of sweat.</p>
+        <div class="formula">public · personal · honest</div>
+      </div>
+      <div class="mech">
+        <div class="mech-icon">🤝</div>
+        <div class="mech-n">how it works</div>
+        <h3>Discretionary thanks</h3>
+        <p>Recognition is <strong>discretionary</strong> — not automatic, not payment, no quotas, no guarantees. When it comes, it comes, and it comes from the same dev wallet you can watch below. Thanks, not a transaction.</p>
+        <div class="formula">thanks, not a payout</div>
+      </div>
+    </div>
+    <div class="hero-actions" style="margin-top:34px;">
+      <a class="btn-primary" href="https://x.com/290lbs_coin" target="_blank" rel="noopener">Share under my X posts</a>
+      <a class="btn-ghost" href="https://discord.gg/vmWxcKP8nM" target="_blank" rel="noopener">Join #proof-of-effort on Discord</a>
+    </div>
+  </div>
+</section>
+
 <section id="buy" class="band-2">
   <div class="wrap">
     <p class="sec-tag">Watch the chain · don't trust, verify</p>
@@ -440,6 +489,7 @@
         <button class="copy-btn" id="copyBtn">Copy</button>
       </div>
       <a class="solscan-link" href="https://solscan.io/token/AvzGHK4ZcfX7UbRz3b1vKFoZNTFo9dC1cXUEhByxpump" target="_blank" rel="noopener">View token on Solscan ↗</a>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text-3);margin-top:12px;line-height:1.6;">✓ Mint authority revoked — total supply can never grow, it can only burn down. Don't trust me; verify it on Solscan above.</div>
     </div>
 
     <div class="wallet-grid">
@@ -480,19 +530,23 @@
 </footer>
 
 <script>
-  var BURNED_SO_FAR = 8345717;
-  var WEEKLY_BURN_PACE = 1621266;
+  var BURNED_SO_FAR = 8489132;          // cumulative burned at the anchor moment (W6 Sweat Burn, executed)
+  var WEEKLY_BURN_PACE = 1621266;       // live counting pace ≈ 2.68 tokens/sec
   var TOTAL_SUPPLY = 1000000000;
 
+  // Fixed real-world anchor (UTC). The counter is a pure function of wall-clock
+  // time from here on — so every visitor sees the same number, it keeps falling
+  // between the twice-weekly burns, and a day later it shows a day's worth less.
+  var ANCHOR_TIME = Date.UTC(2026, 5, 28, 8, 0, 0); // 2026-06-28 08:00:00 UTC
+
   var burnPerSecond = WEEKLY_BURN_PACE / (7 * 24 * 60 * 60);
-  var anchorBurned = BURNED_SO_FAR;
-  var anchorTime = Date.now();
   var fmt = new Intl.NumberFormat('en-US');
   var el = document.getElementById('liveSupply');
 
   function tick() {
-    var elapsedSec = (Date.now() - anchorTime) / 1000;
-    var burnedNow = anchorBurned + elapsedSec * burnPerSecond;
+    var elapsedSec = (Date.now() - ANCHOR_TIME) / 1000;
+    if (elapsedSec < 0) elapsedSec = 0;
+    var burnedNow = BURNED_SO_FAR + elapsedSec * burnPerSecond;
     var remaining = TOTAL_SUPPLY - burnedNow;
     if (remaining < 0) remaining = 0;
     el.textContent = fmt.format(Math.floor(remaining));
