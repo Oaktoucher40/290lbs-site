@@ -563,67 +563,33 @@
     });
   });
 
-  // ---- Live $290LBS balance of the dev wallet, read straight from the Solana chain ----
-  var MINT_290LBS = 'AvzGHK4ZcfX7UbRz3b1vKFoZNTFo9dC1cXUEhByxpump';
-  var DEV_WALLET  = '3TMrxNKH5Eavc6599Z1DDG4FMqdby5wLVN8ULcWRJDo1';
-  // Public, key-less Solana RPC endpoints — tried in order until one answers.
-  var RPC_ENDPOINTS = [
-    'https://solana-rpc.publicnode.com',
-    'https://api.mainnet-beta.solana.com',
-    'https://rpc.ankr.com/solana'
-  ];
-
-  function rpcCall(url) {
-    return fetch(url, {
-      method: 'POST',
-      cache: 'no-store',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        jsonrpc: '2.0', id: 1,
-        method: 'getTokenAccountsByOwner',
-        params: [
-          DEV_WALLET,
-          { mint: MINT_290LBS },
-          { encoding: 'jsonParsed', commitment: 'confirmed' }
-        ]
-      })
-    }).then(function(r){
-      if (!r.ok) throw new Error('http ' + r.status);
-      return r.json();
-    });
-  }
-
-  function fmtAllocPct(total) {
-    var pct = total / TOTAL_SUPPLY * 100;
-    if (pct <= 0) return '0%';
+  // ---- Live $290LBS balance of the dev wallet, via our own same-origin /api/devbal proxy ----
+  // The browser calls this site's own endpoint (no CORS), and the server reads the chain.
+  function fmtAllocPct(pct) {
+    if (typeof pct !== 'number' || !isFinite(pct) || pct <= 0) return '0%';
     if (pct < 0.01) return '<0.01%';
     return pct.toFixed(2) + '%';
   }
 
-  function fetchDevBalance(i) {
-    i = i || 0;
+  function fetchDevBalance() {
     var balEl = document.getElementById('devBal');
     var pctEl = document.getElementById('devPct');
-    if (i >= RPC_ENDPOINTS.length) {
-      if (balEl && balEl.textContent === 'loading…') balEl.textContent = 'unavailable';
-      return;
-    }
-    rpcCall(RPC_ENDPOINTS[i]).then(function(data) {
-      var accounts = data && data.result && data.result.value;
-      if (!accounts) throw new Error('no result');
-      var total = 0;
-      for (var k = 0; k < accounts.length; k++) {
-        var amt = accounts[k].account.data.parsed.info.tokenAmount;
-        total += parseFloat(amt.uiAmountString || amt.uiAmount || 0);
-      }
-      if (balEl) balEl.textContent = fmt.format(Math.round(total)) + ' $290LBS';
-      if (pctEl) pctEl.textContent = fmtAllocPct(total);
-    }).catch(function() {
-      fetchDevBalance(i + 1); // try the next endpoint
-    });
+    fetch('/api/devbal', { cache: 'no-store' })
+      .then(function(r){ return r.json(); })
+      .then(function(d){
+        if (d && typeof d.balance === 'number') {
+          if (balEl) balEl.textContent = fmt.format(Math.round(d.balance)) + ' $290LBS';
+          if (pctEl) pctEl.textContent = fmtAllocPct(d.pct);
+        } else {
+          if (balEl) balEl.textContent = 'unavailable';
+        }
+      })
+      .catch(function(){
+        if (balEl) balEl.textContent = 'unavailable';
+      });
   }
   fetchDevBalance();
-  setInterval(function(){ fetchDevBalance(); }, 60000); // refresh every 60s
+  setInterval(fetchDevBalance, 60000); // refresh every 60s
 </script>
 
 </body>
