@@ -417,6 +417,60 @@
   </div>
 </section>
 
+<!-- ===== MILESTONE BURN — one-off event, SEPARATE from the weekly Sweat/Scale burns ===== -->
+<style>
+  #milestone .ms-card { position: relative; margin-top: 8px; background: linear-gradient(180deg, rgba(226,82,26,0.10), rgba(226,82,26,0.02)); border: 1px solid rgba(226,82,26,0.45); border-radius: 18px; padding: 30px; overflow: hidden; }
+  #milestone .ms-card::before { content:''; position:absolute; top:-50%; right:-8%; width:340px; height:340px; background: radial-gradient(circle, rgba(226,82,26,0.16), transparent 70%); pointer-events:none; }
+  #milestone .ms-status { display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:18px; position:relative; }
+  #milestone .ms-dot { width:9px; height:9px; border-radius:50%; background:var(--ember-2); box-shadow:0 0 10px var(--ember-2); animation:pulse 1.8s ease-in-out infinite; flex-shrink:0; }
+  #milestone .ms-status-txt { font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.06em; text-transform:uppercase; color:var(--ember-2); }
+  #milestone .ms-amount { display:flex; align-items:baseline; gap:12px; flex-wrap:wrap; margin-bottom:16px; position:relative; }
+  #milestone .ms-num { font-family:'Sora',sans-serif; font-weight:800; font-size:clamp(34px,6vw,52px); line-height:1; background:linear-gradient(120deg,var(--gold),var(--ember),var(--dawn)); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
+  #milestone .ms-sym { font-family:'Sora',sans-serif; font-weight:700; font-size:18px; color:var(--text-2); }
+  #milestone .ms-pct { font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--text); padding:5px 10px; border-radius:6px; background:rgba(226,82,26,0.14); border:1px solid rgba(226,82,26,0.35); }
+  #milestone .ms-desc { font-size:16px; color:var(--text-2); line-height:1.7; max-width:680px; margin-bottom:22px; position:relative; }
+  #milestone .ms-desc strong { color:var(--text); font-weight:600; }
+  #milestone .ms-meta { display:flex; gap:14px; flex-wrap:wrap; margin-bottom:22px; position:relative; }
+  #milestone .ms-meta-item { flex:1; min-width:150px; background:linear-gradient(180deg,var(--bg-3),var(--bg-2)); border:1px solid var(--line-soft); border-radius:12px; padding:14px 16px; }
+  #milestone .ms-meta-l { display:block; font-size:11px; color:var(--text-3); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:5px; }
+  #milestone .ms-meta-v { font-family:'Sora',sans-serif; font-weight:600; font-size:15px; color:var(--text); }
+  #milestone .ms-links { display:flex; gap:16px; align-items:center; flex-wrap:wrap; position:relative; }
+  #milestone .ms-btn { font-family:'JetBrains Mono',monospace; font-size:13px; font-weight:500; color:#0E1116; background:linear-gradient(135deg,var(--gold),var(--ember)); padding:11px 18px; border-radius:9px; text-decoration:none; letter-spacing:0.03em; transition:transform 0.2s; }
+  #milestone .ms-btn:hover { transform:translateY(-1px); }
+  #milestone .ms-foot { font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--text-3); margin-top:20px; line-height:1.6; position:relative; }
+</style>
+<section id="milestone" class="band">
+  <div class="wrap">
+    <p class="sec-tag">On top of the weekly burns</p>
+    <h2 class="sec-title">Milestone burn — <span class="grad">locked &amp; loaded</span></h2>
+    <div class="ms-card">
+      <div class="ms-status">
+        <span class="ms-dot"></span>
+        <span class="ms-status-txt">Pending · locked on-chain until Jul 31, 2026</span>
+        <span class="pill">separate from the weekly burns</span>
+      </div>
+      <div class="ms-amount">
+        <span class="ms-num">20,000,000</span>
+        <span class="ms-sym">$290LBS</span>
+        <span class="ms-pct">2% of total supply</span>
+      </div>
+      <p class="ms-desc">
+        I already bought it and <strong>locked it on-chain</strong> — nobody, including me, can move it before July 31. If the fasted weigh-in reads <strong>120.0 kg (265 lbs) or under</strong>, the lock opens and the full 20,000,000 burns the same day via Sol Incinerator. Gone forever. Miss it, and the 20M <strong>re-locks to the next milestone</strong> — it never returns to circulation. The scale goes public either way.
+      </p>
+      <div class="ms-meta">
+        <div class="ms-meta-item"><span class="ms-meta-l">Target</span><span class="ms-meta-v">≤ 120.0 kg · 265 lbs</span></div>
+        <div class="ms-meta-item"><span class="ms-meta-l">Deadline</span><span class="ms-meta-v">July 31, 2026</span></div>
+        <div class="ms-meta-item"><span class="ms-meta-l">If hit</span><span class="ms-meta-v">unlock → burn, same day</span></div>
+      </div>
+      <div class="ms-links">
+        <a class="ms-btn" href="https://stakepoint.app/locks/cmqzpacu70000lb04h13ac1b2" target="_blank" rel="noopener">🔒 View the lock proof ↗</a>
+        <a class="solscan-link" style="margin-top:0;" href="https://solscan.io/token/AvzGHK4ZcfX7UbRz3b1vKFoZNTFo9dC1cXUEhByxpump" target="_blank" rel="noopener">Verify on Solscan ↗</a>
+      </div>
+      <p class="ms-foot">Don't trust me — watch the lock. The 20M can't move before July 31, and it stays out of the supply counter above until it actually burns.</p>
+    </div>
+  </div>
+</section>
+
 <section id="manifesto" class="band">
   <div class="wrap">
     <p class="sec-tag">Where it started</p>
