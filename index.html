@@ -138,7 +138,7 @@
   .badge { display: inline-flex; align-items: center; gap: 7px; font-family: 'JetBrains Mono', monospace; font-size: 11.5px; letter-spacing: 0.01em; color: var(--text-2); background: linear-gradient(180deg, var(--bg-3), var(--bg-2)); border: 1px solid var(--line-soft); border-radius: 100px; padding: 8px 14px; transition: border-color 0.25s; }
   .badge:hover { border-color: rgba(226, 82, 26, 0.4); }
   .badge b { font-style: normal; font-weight: 400; font-size: 13px; line-height: 1; }
-  .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 56px; }
+  .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 30px; margin-bottom: 56px; }
   .btn-primary {
     font-size: 15px; font-weight: 600; color: #0E1116; text-decoration: none;
     padding: 14px 26px; border-radius: 10px;
@@ -311,7 +311,7 @@
         <span class="ls-dot"></span>
         <span class="ls-label">Remaining supply — burning live</span>
       </div>
-      <div class="ls-num" id="liveSupply">991,510,868</div>
+      <div class="ls-num" id="liveSupply">988,210,868</div>
       <div class="ls-sub">Falling live · 1,000,000,000 max, mint authority revoked — it only goes down</div>
     </div>
     <div class="badges">
@@ -325,9 +325,9 @@
       <a class="btn-ghost" href="#manifesto">Read my story</a>
     </div>
     <div class="stat-row">
-      <div class="stat"><div class="num">128.0<span style="font-size:16px;font-weight:500;"> kg</span></div><div class="lbl">Current weight · 282 lbs</div></div>
-      <div class="stat"><div class="num grow">−7.9</div><div class="lbl">Pounds lost so far</div></div>
-      <div class="stat"><div class="num ember">8.49M</div><div class="lbl">Tokens burned forever</div></div>
+      <div class="stat"><div class="num">126.5<span style="font-size:16px;font-weight:500;"> kg</span></div><div class="lbl">Current weight · 278.9 lbs</div></div>
+      <div class="stat"><div class="num grow">−11.2</div><div class="lbl">Pounds lost so far</div></div>
+      <div class="stat"><div class="num ember">11.79M</div><div class="lbl">Tokens burned forever</div></div>
       <div class="stat"><div class="num" id="devPct">—</div><div class="lbl">Dev wallet now</div></div>
     </div>
   </div>
@@ -339,13 +339,13 @@
     <p class="sec-tag">The mission</p>
     <h2 class="sec-title">290 lbs <span class="grad">→</span> 210 lbs</h2>
     <div class="prog">
-      <div class="prog-head"><span class="prog-name">Weight lost toward the 80 lb goal</span><span class="prog-pct grow">10%</span></div>
-      <div class="track"><div class="fill grow" style="width:10%;"></div></div>
+      <div class="prog-head"><span class="prog-name">Weight lost toward the 80 lb goal</span><span class="prog-pct grow">14%</span></div>
+      <div class="track"><div class="fill grow" style="width:14%;"></div></div>
       <div class="ends"><span>290 lbs / 131.6 kg — start</span><span>210 lbs / 95.3 kg — goal</span></div>
     </div>
     <div class="prog">
-      <div class="prog-head"><span class="prog-name">Supply burned from market buybacks</span><span class="prog-pct ember">0.85%</span></div>
-      <div class="track"><div class="fill ember" style="width:8.49%;"></div></div>
+      <div class="prog-head"><span class="prog-name">Supply burned from market buybacks</span><span class="prog-pct ember">1.18%</span></div>
+      <div class="track"><div class="fill ember" style="width:11.79%;"></div></div>
       <div class="ends"><span>0 burned</span><span>1,000,000,000 total supply</span></div>
     </div>
   </div>
@@ -403,7 +403,7 @@
           <tr><td class="wk">W3 · May 31–Jun 6</td><td class="wt">129.8 kg <span style="color:var(--text-3);font-weight:400;">/ 286.2 lbs</span></td><td class="hide-sm">77,369</td><td class="hide-sm">660,000 <span style="color:var(--text-3);font-size:11px;">(0.66 lbs)</span></td><td class="r tot">737,369</td></tr>
           <tr><td class="wk">W4 · Jun 7–13</td><td class="wt">— <span class="pill">knee rest</span></td><td class="hide-sm">75,137</td><td class="hide-sm">0</td><td class="r tot">75,137</td></tr>
           <tr><td class="wk">W5 · Jun 14–20</td><td class="wt">128.0 kg <span style="color:var(--text-3);font-weight:400;">/ 282.2 lbs</span></td><td class="hide-sm">81,292</td><td class="hide-sm">3,970,000 <span style="color:var(--text-3);font-size:11px;">(3.97 lbs)</span></td><td class="r tot">4,051,292</td></tr>
-          <tr><td class="wk">W6 · Jun 21–27</td><td class="wt">— <span class="pill">weigh-in Mon</span></td><td class="hide-sm">143,415 <span class="pill">kcal ×10</span></td><td class="hide-sm">— <span style="color:var(--text-3);font-size:11px;">pending Mon</span></td><td class="r tot">143,415</td></tr>
+          <tr><td class="wk">W6 · Jun 21–27</td><td class="wt">126.5 kg <span style="color:var(--text-3);font-weight:400;">/ 278.9 lbs</span></td><td class="hide-sm">143,415 <span class="pill">kcal ×10</span></td><td class="hide-sm">3,300,000 <span style="color:var(--text-3);font-size:11px;">(3.3 lbs)</span></td><td class="r tot">3,443,415</td></tr>
         </tbody>
       </table>
     </div>
@@ -411,8 +411,8 @@
       I weigh in kg — the Scale Burn counts in pounds. &nbsp;1 lb = 0.4536 kg &nbsp;·&nbsp; 1 kg = 2.2046 lbs &nbsp;·&nbsp; every 1 lb lost = 1,000,000 tokens burned
     </p>
     <div class="log-foot">
-      <div class="fc"><div class="l">Total weight lost</div><div class="v grow">3.6 kg · 7.94 lbs</div></div>
-      <div class="fc"><div class="l">Cumulative burned forever</div><div class="v ember">8,489,132</div></div>
+      <div class="fc"><div class="l">Total weight lost</div><div class="v grow">5.1 kg · 11.24 lbs</div></div>
+      <div class="fc"><div class="l">Cumulative burned forever</div><div class="v ember">11,789,132</div></div>
     </div>
   </div>
 </section>
@@ -530,14 +530,14 @@
 </footer>
 
 <script>
-  var BURNED_SO_FAR = 8489132;          // cumulative burned at the anchor moment (W6 Sweat Burn, executed)
+  var BURNED_SO_FAR = 11789132;         // cumulative burned at the anchor moment (W6 Sweat + Scale, executed)
   var WEEKLY_BURN_PACE = 1621266;       // live counting pace ≈ 2.68 tokens/sec
   var TOTAL_SUPPLY = 1000000000;
 
   // Fixed real-world anchor (UTC). The counter is a pure function of wall-clock
   // time from here on — so every visitor sees the same number, it keeps falling
   // between the twice-weekly burns, and a day later it shows a day's worth less.
-  var ANCHOR_TIME = Date.UTC(2026, 5, 28, 8, 0, 0); // 2026-06-28 08:00:00 UTC
+  var ANCHOR_TIME = Date.UTC(2026, 5, 29, 8, 0, 0); // 2026-06-29 08:00:00 UTC
 
   var burnPerSecond = WEEKLY_BURN_PACE / (7 * 24 * 60 * 60);
   var fmt = new Intl.NumberFormat('en-US');
