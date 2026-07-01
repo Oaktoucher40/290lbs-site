@@ -1,13 +1,17 @@
 // api/devbal.js
-// Vercel serverless function — reads the dev wallet's $290LBS balance from the
+// Vercel serverless function — reads the dev wallet's token balances from the
 // Solana chain *server-side*, so the browser never deals with CORS or RPC keys.
-// The page fetches '/api/devbal' (same origin) and gets back { balance, pct }.
+// The page fetches '/api/devbal' (same origin) and gets back
+//   { balance, pct, sigmaBalance }
+//   - balance / pct : the dev wallet's $290LBS holdings (pct of total supply)
+//   - sigmaBalance  : the dev wallet's $SIGMA holdings (the $SIGMA fund)
 //
 // Works with NO configuration (uses key-less public RPCs server-side, where CORS
 // does not apply). Optionally set a Helius key as the env var HELIUS_API_KEY in
 // Vercel for maximum reliability — it will be tried first and never touches the page.
 
-const MINT = 'AvzGHK4ZcfX7UbRz3b1vKFoZNTFo9dC1cXUEhByxpump';
+const MINT = 'AvzGHK4ZcfX7UbRz3b1vKFoZNTFo9dC1cXUEhByxpump';       // $290LBS
+const SIGMA_MINT = '5SVG3T9CNQsm2kEwzbRq6hASqh1oGfjqTtLXYUibpump'; // $SIGMA (the fund)
 const DEV_WALLET = '3TMrxNKH5Eavc6599Z1DDG4FMqdby5wLVN8ULcWRJDo1';
 const TOTAL_SUPPLY = 1000000000;
 
@@ -23,7 +27,7 @@ function endpoints() {
   return list;
 }
 
-async function queryBalance(url) {
+async function queryBalance(url, mint) {
   const r = await fetch(url, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -33,7 +37,7 @@ async function queryBalance(url) {
       method: 'getTokenAccountsByOwner',
       params: [
         DEV_WALLET,
-        { mint: MINT },
+        { mint: mint },
         { encoding: 'jsonParsed', commitment: 'confirmed' }
       ]
     })
@@ -50,19 +54,27 @@ async function queryBalance(url) {
   return total;
 }
 
+// Try each endpoint in turn for a given mint; return the balance or null.
+async function balanceForMint(mint) {
+  for (const url of endpoints()) {
+    try {
+      return await queryBalance(url, mint);
+    } catch (e) {
+      // try the next endpoint
+    }
+  }
+  return null;
+}
+
 module.exports = async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   // Cache at the edge for 30s so visitors share one value and we stay gentle on RPCs.
   res.setHeader('Cache-Control', 's-maxage=30, stale-while-revalidate=60');
 
-  for (const url of endpoints()) {
-    try {
-      const total = await queryBalance(url);
-      const pct = (total / TOTAL_SUPPLY) * 100;
-      return res.status(200).json({ balance: total, pct: pct });
-    } catch (e) {
-      // try the next endpoint
-    }
-  }
-  return res.status(200).json({ balance: null, pct: null });
+  // Query both independently — a failure on one never breaks the other.
+  const balance = await balanceForMint(MINT);
+  const sigmaBalance = await balanceForMint(SIGMA_MINT);
+  const pct = (typeof balance === 'number') ? (balance / TOTAL_SUPPLY) * 100 : null;
+
+  return res.status(200).json({ balance: balance, pct: pct, sigmaBalance: sigmaBalance });
 };
