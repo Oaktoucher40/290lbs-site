@@ -681,36 +681,49 @@
 <section id="run" class="band">
   <div class="wrap">
     <p class="sec-tag">This isn't only about me</p>
-    <h2 class="sec-title">Proof of Effort — <span class="grad">Community Run</span></h2>
-    <p style="font-size:17px;color:var(--text-2);max-width:680px;margin-bottom:36px;line-height:1.7;">
-      You sweat too? Show it. This is an open, always-on call — share your own effort, and from time to time I may send a token of thanks from my own wallet. Not a payout, not a prize draw. Just recognition for the people walking this road with me.
+    <h2 class="sec-title">Community <span class="grad">rewards</span> — train &amp; earn</h2>
+    <p style="font-size:17px;color:var(--text-2);max-width:700px;margin-bottom:30px;line-height:1.7;">
+      You train. You track it. Now it pays. <strong>50,000,000 $290LBS — 5% of the supply — sits in a dedicated community wallet</strong>, reserved for the people who put in real work. That wallet never sells and never buys. It only ever sends — to participants and winners.
     </p>
-    <div class="mech-grid">
+
+    <div class="mech-grid" style="grid-template-columns:repeat(auto-fit,minmax(250px,1fr));">
       <div class="mech">
-        <div class="mech-icon">🔗</div>
-        <div class="mech-n">how to join</div>
-        <h3>Drop a public link</h3>
-        <p>Share a <strong>public link</strong> to a real workout, run or hike — Strava, Komoot, or a public social post — as a comment under any of my X posts, or in the <strong>#proof-of-effort</strong> channel on Discord. A link, not a screenshot. The chain doesn't lie, and neither does your effort.</p>
-        <div class="formula">public link · not a screenshot</div>
+        <div class="mech-icon">🏃</div>
+        <div class="mech-n">01 · Workout rewards</div>
+        <h3>Sweat, verified, paid</h3>
+        <p>Train with your smartwatch. Follow <strong>@290lbs_coin</strong>, then comment a <strong>verifiable activity link</strong> (Strava, Komoot, Huawei…) from your own profile under my posts — or tag @290lbs_coin in your own workout post. Add your Solana wallet. Verified activity gets paid: <strong>500 kcal = 5,000 coins</strong>.</p>
+        <div class="formula">active kcal × 10 = your $290LBS</div>
       </div>
       <div class="mech">
-        <div class="mech-icon">✅</div>
-        <div class="mech-n">the rules</div>
-        <h3>Keep it real</h3>
-        <p>Real activity, set to <strong>public</strong> — not followers-only. Posted from a recognizable, personal profile. And posting more does not earn more: ten links in a day won't beat one honest week of sweat.</p>
-        <div class="formula">public · personal · honest</div>
+        <div class="mech-icon">💪</div>
+        <div class="mech-n">02 · Push-up challenge</div>
+        <h3>Reps on camera, coins on-chain</h3>
+        <p>Send a video of your set of <strong>strict push-ups</strong> — one take, visibly <strong>uncut</strong>. Every strict rep on the video pays <strong>100 $290LBS</strong>: 50 push-ups = 5,000 coins. Submit on X or Telegram. Strict means full range — chest down, arms locked out.</p>
+        <div class="formula">strict reps × 100 = your $290LBS</div>
       </div>
       <div class="mech">
-        <div class="mech-icon">🤝</div>
-        <div class="mech-n">how it works</div>
-        <h3>Discretionary thanks</h3>
-        <p>Recognition is <strong>discretionary</strong> — not automatic, not payment, no quotas, no guarantees. When it comes, it comes, and it comes from the same dev wallet you can watch below. Thanks, not a transaction.</p>
-        <div class="formula">thanks, not a payout</div>
+        <div class="mech-icon">🏆</div>
+        <div class="mech-n">03 · The leaderboard</div>
+        <h3>Every reward counts</h3>
+        <p>Every $290LBS you earn — workouts and push-ups alike — <strong>counts toward a public leaderboard by wallet address, and the top-earning wallets take extra rewards on top</strong>. Details drop on X and Telegram — start stacking now.</p>
+        <div class="formula">top wallets = extra rewards</div>
       </div>
     </div>
-    <div class="hero-actions" style="margin-top:34px;">
-      <a class="btn-primary" href="https://x.com/290lbs_coin" target="_blank" rel="noopener">Share under my X posts</a>
-      <a class="btn-ghost" href="https://discord.gg/vmWxcKP8nM" target="_blank" rel="noopener">Join #proof-of-effort on Discord</a>
+
+    <div class="live-supply" style="max-width:640px;margin-top:34px;margin-bottom:0;">
+      <div class="ls-head">
+        <span class="ls-dot"></span>
+        <span class="ls-label">Community rewards wallet — live</span>
+      </div>
+      <div class="ls-num" id="commBal">loading…</div>
+      <div class="ls-sub">Never sells · never buys · only pays out — read straight from the chain</div>
+      <div style="margin-top:12px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-3);word-break:break-all;">DqiYuXs63x6Wmy6c1ymGsc8hEXH8GrSyDxrtuXX2UG3t</div>
+    </div>
+
+    <div class="hero-actions" style="margin-top:26px;margin-bottom:0;">
+      <a class="btn-primary" href="https://x.com/290lbs_coin" target="_blank" rel="noopener">Earn on X</a>
+      <a class="btn-ghost" href="https://t.me/FatDevToChad" target="_blank" rel="noopener">Submit on Telegram</a>
+      <a class="btn-ghost" href="https://solscan.io/account/DqiYuXs63x6Wmy6c1ymGsc8hEXH8GrSyDxrtuXX2UG3t" target="_blank" rel="noopener">Verify the wallet</a>
     </div>
   </div>
 </section>
@@ -815,6 +828,7 @@
     var balEl = document.getElementById('devBal');
     var pctEl = document.getElementById('devPct');
     var sigmaEl = document.getElementById('sigmaBal');
+    var commEl = document.getElementById('commBal');
     fetch('/api/devbal', { cache: 'no-store' })
       .then(function(r){ return r.json(); })
       .then(function(d){
@@ -824,10 +838,13 @@
         if (pctEl && typeof d.balance === 'number') pctEl.textContent = fmtAllocPct(d.pct);
         if (sigmaEl) sigmaEl.textContent = (typeof d.sigmaBalance === 'number')
           ? fmt.format(Math.round(d.sigmaBalance)) + ' $SIGMA' : 'unavailable';
+        if (commEl) commEl.textContent = (typeof d.communityBalance === 'number')
+          ? fmt.format(Math.round(d.communityBalance)) + ' $290LBS' : 'unavailable';
       })
       .catch(function(){
         if (balEl) balEl.textContent = 'unavailable';
         if (sigmaEl) sigmaEl.textContent = 'unavailable';
+        if (commEl) commEl.textContent = 'unavailable';
       });
   }
   fetchDevBalance();
