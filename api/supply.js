@@ -1,11 +1,10 @@
 // api/supply.js
-// Public supply endpoint for listings/verification (Jupiter, CoinGecko, etc.).
-// Reads the LIVE total supply of $290LBS straight from the Solana chain via
-// getTokenSupply — the authoritative source, reduced by every real burn.
+// Supply endpoint for Jupiter Verified (and other listings).
+// Reads the LIVE on-chain supply of $290LBS via getTokenSupply — the
+// authoritative source, reduced automatically by every real burn.
 //
-//   /api/supply              -> {"totalSupply": 986539684.123, "decimals": 6}
-//   /api/supply?format=plain -> 986539684.123        (plain number, most
-//                                listing forms ask for exactly this)
+//   /api/supply              -> {"circulatingSupply": 986539684.123}   (Jupiter format)
+//   /api/supply?format=plain -> 986539684.123                          (plain number)
 
 const MINT = 'AvzGHK4ZcfX7UbRz3b1vKFoZNTFo9dC1cXUEhByxpump'; // $290LBS
 
@@ -33,23 +32,22 @@ async function fetchSupply(url) {
   const data = await r.json();
   const v = data && data.result && data.result.value;
   if (!v) throw new Error('no result');
-  return { totalSupply: parseFloat(v.uiAmountString || v.uiAmount), decimals: v.decimals };
+  return parseFloat(v.uiAmountString || v.uiAmount);
 }
 
 module.exports = async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
-  // cache 60s at the edge — plenty fresh for supply, gentle on RPCs
   res.setHeader('Cache-Control', 's-maxage=60, stale-while-revalidate=120');
 
-  let out = null;
+  let supply = null;
   for (const url of endpoints()) {
-    try { out = await fetchSupply(url); break; } catch (e) { /* next */ }
+    try { supply = await fetchSupply(url); break; } catch (e) { /* next */ }
   }
-  if (!out) return res.status(503).json({ error: 'supply unavailable' });
+  if (supply === null) return res.status(503).json({ error: 'supply unavailable' });
 
   if (req.query && req.query.format === 'plain') {
     res.setHeader('Content-Type', 'text/plain');
-    return res.status(200).send(String(out.totalSupply));
+    return res.status(200).send(String(supply));
   }
-  return res.status(200).json(out);
+  return res.status(200).json({ circulatingSupply: supply });
 };
