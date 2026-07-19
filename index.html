@@ -390,7 +390,7 @@
 
   <div class="ld-mid">
     <h1 class="ld-h1">Build the man.<br><span class="g">Burn the supply.</span></h1>
-    <p class="ld-sub">One dev, 80 pounds to lose, every result written to the chain. <strong>Consistency, conviction, hard work.</strong> Nothing promised — only earned.</p>
+    <p class="ld-sub">I'm done lying to myself — so I built a coin that won't let me. Years of stress, alcohol and excuses made me 290 lbs — now every measured result burns supply: one step = 1 coin, one active calorie = 10 coins, one pound lost on the scale = 1,000,000 burned. <strong>Consistency, conviction, real work.</strong> Nothing promised — only earned.</p>
     <div class="ld-ca">
       <code id="ldCa">AvzGHK4ZcfX7UbRz3b1vKFoZNTFo9dC1cXUEhByxpump</code>
       <button id="ldCopy" type="button">Copy</button>
@@ -407,7 +407,7 @@
       <button class="ld-more" data-target="#milestone" type="button">🔒 <b>45M locked</b><span class="ld-tail"> — hit a weight target, it burns</span></button>
       <button class="ld-more" data-target="#milestone" type="button">⚡ <b>Stake &amp; earn</b><span class="ld-tail"> — passive income · 50M pool</span></button>
       <button class="ld-more" data-target="#sigma" type="button">Σ <b>$SIGMA fund</b><span class="ld-tail"> · dev wallet live</span></button>
-      <button class="ld-more" data-target="#log" type="button">🏃 <b>290 → 279.3 lbs</b><span class="ld-tail"> · 13.46M burned</span></button>
+      <button class="ld-more" data-target="#log" type="button">🏃 <b>290 → 279.3 lbs</b><span class="ld-tail"> · 13.66M burned</span></button>
       <button class="ld-more" data-target="#top" type="button">👛 <b>Dev wallet</b><span class="ld-tail"> 3TMr…JDo1</span></button>
     </div>
     <div class="ld-foot">
@@ -489,7 +489,7 @@
         <span class="ls-dot"></span>
         <span class="ls-label">Remaining supply — burning live</span>
       </div>
-      <div class="ls-num" id="liveSupply">986,539,684</div>
+      <div class="ls-num" id="liveSupply">986,343,122</div>
       <div class="ls-sub">Ticking at the average pace of the last weeks' real, executed burns · 1,000,000,000 max, mint authority revoked — it only goes down</div>
     </div>
         <div class="hero-actions">
@@ -503,7 +503,7 @@
     <div class="stat-row">
       <div class="stat"><div class="num">126.7<span style="font-size:16px;font-weight:500;"> kg</span></div><div class="lbl">Current weight · 279.3 lbs</div></div>
       <div class="stat"><div class="num grow">−4.9<span style="font-size:16px;font-weight:500;"> kg</span></div><div class="lbl">Weight lost · 10.8 lbs</div></div>
-      <div class="stat"><div class="num ember">13.46M</div><div class="lbl">Tokens burned forever</div></div>
+      <div class="stat"><div class="num ember">13.66M</div><div class="lbl">Tokens burned forever</div></div>
       <div class="stat"><div class="num" id="devPct">—</div><div class="lbl">Dev wallet now</div></div>
     </div>
   </div>
@@ -583,6 +583,7 @@
           <tr><td class="wk">W6 · Jun 21–27</td><td class="wt">126.5 kg <span style="color:var(--text-3);font-weight:400;">/ 278.9 lbs</span></td><td class="hide-sm">143,415 <span class="pill">kcal ×10</span></td><td class="hide-sm">3,300,000 <span style="color:var(--text-3);font-size:11px;">(3.3 lbs)</span></td><td class="r tot">3,443,415</td></tr>
           <tr><td class="wk">W7 · Jun 28–Jul 4</td><td class="wt">125.9 kg <span style="color:var(--text-3);font-weight:400;">/ 277.6 lbs</span></td><td class="hide-sm">204,016 <span class="pill" style="color:var(--ember-2);border-color:rgba(240,115,31,0.45);">🏆 record</span></td><td class="hide-sm">1,320,000 <span style="color:var(--text-3);font-size:11px;">(1.32 lbs)</span></td><td class="r tot">1,524,016</td></tr>
           <tr><td class="wk">W8 · Jul 5–11</td><td class="wt">126.7 kg <span style="color:var(--text-3);font-weight:400;">/ 279.3 lbs</span></td><td class="hide-sm">147,168</td><td class="hide-sm">0 <span style="color:var(--text-3);font-size:11px;">(+0.8 kg — no burn, shown anyway)</span></td><td class="r tot">147,168</td></tr>
+          <tr><td class="wk">W9 · Jul 12–18</td><td class="wt">— <span class="pill">weigh-in Mon</span></td><td class="hide-sm">196,562</td><td class="hide-sm">— <span style="color:var(--text-3);font-size:11px;">pending Mon</span></td><td class="r tot">196,562</td></tr>
         </tbody>
       </table>
     </div>
@@ -788,14 +789,14 @@
 </footer>
 
 <script>
-  var BURNED_SO_FAR = 13460316;         // cumulative burned at the anchor moment (through W8 Sweat Burn, executed)
-  var WEEKLY_BURN_PACE = 1682540;       // live counting pace (8-week avg) ≈ 2.78 tokens/sec
+  var BURNED_SO_FAR = 13656878;         // cumulative burned at the anchor moment (through W9 Sweat Burn, executed)
+  var WEEKLY_BURN_PACE = 1517431;       // live counting pace (9-week avg) ≈ 2.51 tokens/sec
   var TOTAL_SUPPLY = 1000000000;
 
   // Fixed real-world anchor (UTC). The counter is a pure function of wall-clock
   // time from here on — so every visitor sees the same number, it keeps falling
   // between the twice-weekly burns, and a day later it shows a day's worth less.
-  var ANCHOR_TIME = Date.UTC(2026, 6, 12, 8, 0, 0); // 2026-07-12 08:00:00 UTC
+  var ANCHOR_TIME = Date.UTC(2026, 6, 19, 8, 0, 0); // 2026-07-19 08:00:00 UTC
 
   var burnPerSecond = WEEKLY_BURN_PACE / (7 * 24 * 60 * 60);
   var fmt = new Intl.NumberFormat('en-US');
