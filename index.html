@@ -302,6 +302,7 @@
   /* ---------- LANDING COVER v3 — cinematic full-bleed ---------- */
   body.locked { overflow: hidden; }
   #landing {
+    --ldgap: clamp(12px, 2.2vh, 20px);
     position: fixed; inset: 0; z-index: 200; background: #07090C; color: #F4F1EA;
     font-family: 'Inter', sans-serif;
     display: flex; flex-direction: column; justify-content: space-between;
@@ -325,7 +326,7 @@
   .ld-brand { display: flex; gap: 10px; align-items: center; font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 19px; text-transform: uppercase; letter-spacing: 0; color: #F4F1EA; }
   .ld-brand img { width: 30px; height: 30px; border-radius: 50%; }
   .ld-net { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.15em; color: #E9B45B; text-transform: uppercase; }
-  .ld-mid { text-align: center; display: flex; flex-direction: column; align-items: center; gap: clamp(12px, 2.4vh, 24px); }
+  .ld-mid { text-align: center; display: flex; flex-direction: column; align-items: center; gap: var(--ldgap); }
   .ld-h1 { font-family: 'Oswald', sans-serif; font-weight: 700; text-transform: uppercase; line-height: 1; margin: 0;
     font-size: clamp(52px, 11vh, 116px); letter-spacing: 0.004em; text-shadow: 0 8px 50px rgba(0,0,0,0.7); color: #F4F1EA; }
   .ld-h1 .g { background: linear-gradient(115deg, #F8EFD8, #EFC981 45%, #D8963C); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
@@ -335,8 +336,8 @@
   .ld-ca code { font-size: clamp(11px, 1.7vh, 14px); color: #EFC981; border: 1px solid rgba(224,168,76,0.4); background: rgba(10,10,10,0.5); padding: 10px 14px; border-radius: 10px; word-break: break-all; }
   .ld-ca button { font-family: inherit; font-size: 12px; color: #EDE7DA; background: rgba(10,10,10,0.5); border: 1px solid #4A4438; border-radius: 10px; padding: 10px 15px; cursor: pointer; text-transform: uppercase; letter-spacing: 0.08em; transition: border-color .2s, color .2s; }
   .ld-ca button:hover { border-color: #EFC981; color: #fff; }
-  .ld-low { display: flex; flex-direction: column; gap: 14px; }
-  .ld-supply { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 5px; margin-bottom: 4px; }
+  .ld-low { display: flex; flex-direction: column; gap: var(--ldgap); }
+  .ld-supply { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 5px; }
   .ld-supply .k { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: #B9AE97; }
   .ld-supply .v { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: clamp(26px, 4.4vh, 40px); line-height: 1; letter-spacing: 0.01em;
     background: linear-gradient(115deg, #F8EFD8, #EFC981 45%, #D8963C); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
@@ -345,14 +346,14 @@
     border-radius: 10px; padding: 9px 15px; color: #EDE7DA; text-decoration: none; font-family: 'Inter', sans-serif; font-size: 13.5px; transition: 0.2s; }
   .ld-links a:hover { border-color: #EFC981; color: #fff; transform: translateY(-2px); }
   .ld-links img { width: 17px; height: 17px; border-radius: 4px; }
-  .ld-social { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 10px; }
+  .ld-social { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
   .ld-social a { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 40px;
     border: 1px solid rgba(255,255,255,0.22); background: rgba(8,8,8,0.55); backdrop-filter: blur(6px);
     border-radius: 10px; color: #EDE7DA; text-decoration: none; transition: 0.2s; }
   .ld-social a:hover { border-color: #EFC981; color: #fff; transform: translateY(-2px); }
   .ld-social svg { width: 19px; height: 19px; fill: currentColor; }
-  .ld-chips { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
-  .ld-more { border: 1px solid rgba(255,255,255,0.22); background: rgba(8,8,8,0.55); backdrop-filter: blur(6px); border-radius: 12px;
+  .ld-chips { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+  .ld-more { display: flex; align-items: center; justify-content: center; text-align: center; border: 1px solid rgba(255,255,255,0.22); background: rgba(8,8,8,0.55); backdrop-filter: blur(6px); border-radius: 12px;
     padding: 12px 18px; font-family: 'Inter', sans-serif; font-size: clamp(13px, 1.9vh, 15px); color: #EDE7DA; cursor: pointer; transition: 0.2s; }
   .ld-more:hover { border-color: #EFC981; color: #fff; transform: translateY(-2px); }
   .ld-more b { color: #EFC981; font-weight: 600; }
@@ -375,7 +376,6 @@
     .ld-more { padding: 10px 10px; font-size: 12.5px; text-align: center; }
     .ld-fig { height: 26vh; opacity: 0.25; }
     .ld-foot { flex-direction: column; align-items: stretch; }
-    .ld-supply { margin-bottom: 8px; }
     .ld-supply .v { font-size: 24px; }
     .ld-enter { width: 100%; padding: 14px 20px; }
     .ld-note { display: none; }
