@@ -336,6 +336,10 @@
   .ld-ca button { font-family: inherit; font-size: 12px; color: #EDE7DA; background: rgba(10,10,10,0.5); border: 1px solid #4A4438; border-radius: 10px; padding: 10px 15px; cursor: pointer; text-transform: uppercase; letter-spacing: 0.08em; transition: border-color .2s, color .2s; }
   .ld-ca button:hover { border-color: #EFC981; color: #fff; }
   .ld-low { display: flex; flex-direction: column; gap: 14px; }
+  .ld-supply { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 5px; margin-bottom: 4px; }
+  .ld-supply .k { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: #B9AE97; }
+  .ld-supply .v { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: clamp(26px, 4.4vh, 40px); line-height: 1; letter-spacing: 0.01em;
+    background: linear-gradient(115deg, #F8EFD8, #EFC981 45%, #D8963C); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
   .ld-links { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
   .ld-links a { display: inline-flex; align-items: center; gap: 9px; border: 1px solid rgba(255,255,255,0.22); background: rgba(8,8,8,0.55); backdrop-filter: blur(6px);
     border-radius: 10px; padding: 9px 15px; color: #EDE7DA; text-decoration: none; font-family: 'Inter', sans-serif; font-size: 13.5px; transition: 0.2s; }
@@ -365,6 +369,8 @@
     .ld-more { padding: 10px 10px; font-size: 12.5px; text-align: center; }
     .ld-fig { height: 26vh; opacity: 0.25; }
     .ld-foot { flex-direction: column; align-items: stretch; }
+    .ld-supply { margin-bottom: 8px; }
+    .ld-supply .v { font-size: 24px; }
     .ld-enter { width: 100%; padding: 14px 20px; }
     .ld-note { display: none; }
   }
@@ -405,9 +411,13 @@
   <div class="ld-low">
     <div class="ld-chips">
       <button class="ld-more" data-target="#how" type="button">🔥 <b>2 burns every week</b></button>
-      <button class="ld-more" data-target="#milestone" type="button">🔒 <b>45M locked</b></button>
+      <button class="ld-more" data-target="#milestone" type="button">🔒 <b>45M locked to burn</b></button>
       <button class="ld-more" data-target="#milestone" type="button">⚡ <b>Stake &amp; earn</b></button>
       <button class="ld-more" data-target="#sigma" type="button">Σ <b>$SIGMA fund</b></button>
+    </div>
+    <div class="ld-supply">
+      <span class="k">Remaining supply</span>
+      <span class="v" id="ldSupply">979,633,448</span>
     </div>
     <div class="ld-foot">
       <button class="ld-enter" id="ldEnter" type="button">Enter the full site</button>
